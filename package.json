@@ -1,0 +1,24 @@
+{
+  "name": "glimp-website",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host",
+    "build": "vite build",
+    "preview": "vite preview --host"
+  },
+  "dependencies": {
+    "@fontsource-variable/manrope": "^5.2.0",
+    "@fontsource/dm-mono": "^5.2.0",
+    "@m3e/icons": "^1.0.19",
+    "@m3e/react": "^2.9.2",
+    "@m3e/web": "^2.9.2",
+    "react": "^19.2.5",
+    "react-dom": "^19.2.5"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^6.0.1",
+    "vite": "^8.0.10"
+  }
+}

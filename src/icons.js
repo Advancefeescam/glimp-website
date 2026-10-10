@@ -1,0 +1,18 @@
+// Alleen de icoontjes die de site gebruikt: houdt de bundel klein.
+import '@m3e/icons/outlined/map';
+import '@m3e/icons/outlined/directions_bus';
+import '@m3e/icons/outlined/alt_route';
+import '@m3e/icons/outlined/route';
+import '@m3e/icons/outlined/palette';
+import '@m3e/icons/outlined/light_mode';
+import '@m3e/icons/outlined/dark_mode';
+import '@m3e/icons/outlined/contrast';
+import '@m3e/icons/outlined/menu';
+import '@m3e/icons/outlined/close';
+import '@m3e/icons/outlined/download';
+import '@m3e/icons/outlined/open_in_new';
+import '@m3e/icons/outlined/arrow_outward';
+import '@m3e/icons/outlined/android';
+import '@m3e/icons/outlined/schedule';
+import '@m3e/icons/outlined/bug_report';
+import '@m3e/icons/outlined/layers';
