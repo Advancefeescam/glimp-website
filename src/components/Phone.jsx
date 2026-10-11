@@ -1,14 +1,15 @@
 const base = import.meta.env.BASE_URL;
 
-// De screenshots zijn 620×1378 (9:20), rechtstreeks uit de app.
+// Schermafbeeldingen zijn 640×1412, zonder de zwarte gebaarzone onderaan,
+// zodat het frame overal even strak sluit.
 export default function Phone({ shot, alt, eager = false, className = '' }) {
   return (
     <figure className={`phone ${className}`}>
       <img
         src={`${base}screenshots/${shot}.webp`}
         alt={alt}
-        width="620"
-        height="1378"
+        width="640"
+        height="1412"
         loading={eager ? 'eager' : 'lazy'}
         decoding="async"
       />

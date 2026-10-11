@@ -3,6 +3,7 @@ import { M3eTabs, M3eTab, M3eTabPanel } from '@m3e/react/tabs';
 import { M3eIcon } from '@m3e/react/icon';
 import Phone from './Phone';
 import { useReveal } from '../hooks/useReveal';
+import { useMediaQuery } from '../hooks/useMediaQuery';
 
 const features = [
   {
@@ -58,6 +59,9 @@ const features = [
 export default function Features() {
   const ref = useReveal();
   const [active, setActive] = useState(0);
+  // Op smalle schermen passen vier tabs alleen als ze de breedte verdelen (icoon boven label).
+  const narrow = useMediaQuery('(max-width: 640px)');
+
   return (
     <section className="section wrap" id="functies" ref={ref}>
       <header className="section-head">
@@ -69,42 +73,46 @@ export default function Features() {
         </p>
       </header>
 
-      <M3eTabs
-        className="tabs"
-        variant="primary"
-        stretch
-        onChange={(e) => {
-          const i = e.target?.selectedIndex;
-          if (typeof i === 'number' && i >= 0) setActive(i);
-        }}
-      >
-        {features.map((f, i) => (
-          <M3eTab key={`t-${f.id}`} htmlFor={`paneel-${f.id}`} selected={i === active}>
-            <M3eIcon slot="icon" name={f.icon} />
-            {f.tab}
-          </M3eTab>
-        ))}
-        {features.map((f) => (
-          <M3eTabPanel key={`p-${f.id}`} id={`paneel-${f.id}`}>
-            <div className="feature">
-              <div className="feature-copy">
-                <h3>{f.title}</h3>
-                <p>{f.text}</p>
-                <ul className="points">
-                  {f.points.map((p) => (
-                    <li key={p}>{p}</li>
+      <div className="feature-card">
+        <M3eTabs
+          className="tabs"
+          variant={narrow ? 'primary' : 'secondary'}
+          stretch={narrow}
+          disablePagination={narrow}
+          disableSwipe
+          onChange={(e) => {
+            const i = e.target?.selectedIndex;
+            if (typeof i === 'number' && i >= 0) setActive(i);
+          }}
+        >
+          {features.map((f, i) => (
+            <M3eTab key={`t-${f.id}`} htmlFor={`paneel-${f.id}`} selected={i === active}>
+              <M3eIcon slot="icon" name={f.icon} />
+              {f.tab}
+            </M3eTab>
+          ))}
+          {features.map((f) => (
+            <M3eTabPanel key={`p-${f.id}`} id={`paneel-${f.id}`}>
+              <div className="feature">
+                <div className="feature-copy">
+                  <h3>{f.title}</h3>
+                  <p>{f.text}</p>
+                  <ul className="points">
+                    {f.points.map((p) => (
+                      <li key={p}>{p}</li>
+                    ))}
+                  </ul>
+                </div>
+                <div className="feature-stage">
+                  {f.shots.map(([shot, alt]) => (
+                    <Phone key={shot} shot={shot} alt={alt} />
                   ))}
-                </ul>
+                </div>
               </div>
-              <div className="feature-shots">
-                {f.shots.map(([shot, alt], i) => (
-                  <Phone key={shot} shot={shot} alt={alt} className={i === 1 ? 'second' : 'first'} />
-                ))}
-              </div>
-            </div>
-          </M3eTabPanel>
-        ))}
-      </M3eTabs>
+            </M3eTabPanel>
+          ))}
+        </M3eTabs>
+      </div>
     </section>
   );
 }

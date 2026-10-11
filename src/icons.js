@@ -16,3 +16,4 @@ import '@m3e/icons/outlined/android';
 import '@m3e/icons/outlined/schedule';
 import '@m3e/icons/outlined/bug_report';
 import '@m3e/icons/outlined/layers';
+import '@m3e/icons/outlined/database';
