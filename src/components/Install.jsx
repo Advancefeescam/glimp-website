@@ -37,7 +37,7 @@ export default function Install() {
     <section className="section install-section" id="installeren" ref={ref}>
       <div className="wrap">
         <div className="download-panel">
-                    <div className="download-content">
+          <div className="download-content">
             <p className="eyebrow download-eyebrow">Voor Android</p>
             <h2>Klaar voor<br /><span>de volgende rit?</span></h2>
             <p>Download Glimp als APK en bekijk je reis vanaf de kaart.</p>
