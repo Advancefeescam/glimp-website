@@ -23,7 +23,7 @@ export default function Footer() {
             <span>glimp<span>.</span></span>
           </a>
           <h2>Tot aan je<br />volgende halte.</h2>
-          <p><strong>Je reis, in één oogopslag.</strong> De wereld beweegt. Glimp helpt je overzicht te houden.</p>
+          <p>Je reis, in één oogopslag.</p>
         </div>
         <div className="footer-nav-wrap">
           <nav aria-label="Website">
