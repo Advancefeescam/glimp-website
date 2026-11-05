@@ -1,25 +1,51 @@
-// Strook onder de hero, in de stijl van een vertrekbord. Alleen feiten uit de app.
-const rows = [
-  { chip: '5+', color: 'green', title: 'Databronnen', note: 'gecombineerd in één app' },
-  { chip: '3', color: 'orange', title: 'Weergaves', note: 'licht, donker en OLED' },
-  { chip: '4', color: 'blue', title: 'Hoofdschermen', note: 'kaart, favorieten, meldingen, instellingen' },
-  { chip: 'NL', color: 'red', title: 'Openbaar vervoer', note: 'gebouwd voor Nederland' },
+import { M3eCard } from '@m3e/react/card';
+import { M3eIcon } from '@m3e/react/icon';
+
+const steps = [
+  {
+    n: '01',
+    icon: 'map',
+    title: 'Kijk om je heen.',
+    body: 'Open de kaart en ontdek haltes en lijnen in jouw omgeving.',
+    tone: 'lilac',
+  },
+  {
+    n: '02',
+    icon: 'schedule',
+    title: 'Weet wat vertrekt.',
+    body: 'Bekijk beschikbare vertrektijden en kies het moment dat past.',
+    tone: 'mint',
+  },
+  {
+    n: '03',
+    icon: 'alt_route',
+    title: 'Ga verder.',
+    body: 'Vergelijk reisopties en houd de route onderweg in beeld.',
+    tone: 'peach',
+  },
 ];
 
 export default function Board() {
   return (
-    <section className="board" aria-label="Glimp in cijfers">
-      <ul className="wrap board-list">
-        {rows.map((r) => (
-          <li key={r.title}>
-            <span className={`chip ${r.color}`}>{r.chip}</span>
-            <span className="board-text">
-              <strong>{r.title}</strong>
-              <small>{r.note}</small>
-            </span>
-          </li>
+    <section className="journey wrap" aria-label="Glimp in drie stappen">
+      <div className="journey-heading">
+        <p className="label">Gemaakt voor echte reizen</p>
+        <p>Alles wat je nodig hebt, <strong>zonder de omwegen.</strong></p>
+      </div>
+      <div className="journey-grid">
+        {steps.map((step) => (
+          <M3eCard key={step.n} className={'journey-card ' + step.tone} variant="filled">
+            <div className="journey-card-inner">
+              <div className="journey-card-top">
+                <span className="step-number">{step.n}</span>
+                <span className="journey-icon"><M3eIcon name={step.icon} aria-hidden="true" /></span>
+              </div>
+              <h2>{step.title}</h2>
+              <p>{step.body}</p>
+            </div>
+          </M3eCard>
         ))}
-      </ul>
+      </div>
     </section>
   );
 }
