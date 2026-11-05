@@ -8,50 +8,58 @@ import { useMediaQuery } from '../hooks/useMediaQuery';
 const features = [
   {
     id: 'kaart',
-    tab: 'Kaart',
+    tab: 'De kaart',
     icon: 'map',
-    title: 'Begin bij de kaart',
-    text: 'De kaart is het startscherm. Zoek op bus of halte, zie het weer op je locatie en pas de kaart aan met lagen en kaartstijlen.',
-    points: ['Zoeken op bus of halte', '3D-gebouwen en dag/nacht-sfeer', 'Online kaartstijlen, ook satelliet'],
+    number: '01',
+    eyebrow: 'Jouw startpunt',
+    title: 'De omgeving, helemaal in beeld.',
+    text: 'Geen lijst waar je eerst doorheen moet. Open de kaart, ontdek de haltes om je heen en ga direct verder naar wat er rijdt.',
+    points: ['Zoek haltes en lijnen op één plek', 'Wissel tussen kaartlagen en kaartstijlen', 'Bekijk meer informatie vanuit de kaart'],
     shots: [
-      ['map', 'De kaart met haltes, zoekbalk, weer en navigatie onderin'],
-      ['map-styles', 'Het scherm Kaart en sfeer met kaartlagen en kaartstijlen'],
+      ['map', 'Kaartweergave van Glimp met haltes en zoekbalk'],
+      ['map-styles', 'Kaartstijlen en lagen in Glimp'],
     ],
   },
   {
     id: 'haltes',
-    tab: 'Haltes',
+    tab: 'Vertrektijden',
     icon: 'schedule',
-    title: 'Vertrektijden per halte',
-    text: 'Tik op een halte en zie per lijn wanneer de volgende ritten vertrekken, met de status erbij. Filter op lijn of kies een ander vertrekmoment dan nu.',
-    points: ['Filteren per lijn', 'Vertrekmoment kiezen', 'Melding instellen per rit'],
+    number: '02',
+    eyebrow: 'Precies op tijd',
+    title: 'De volgende vertrektijden, zonder zoekwerk.',
+    text: 'Selecteer een halte en zie welke ritten er aankomen. Bekijk de lijnen, kies waar je naar wilt kijken en ontdek meer details per vertrek.',
+    points: ['Vertrekken overzichtelijk bij elkaar', 'Filter op de gewenste lijn', 'Meer ritinformatie waar beschikbaar'],
     shots: [
-      ['stop-departures', 'Haltepaneel met lijnfilter en vertrektijden op de kaart'],
-      ['stop-details', 'Detailscherm van een halte met alle komende ritten'],
+      ['stop-departures', 'Haltescherm met vertrektijden bij de kaart'],
+      ['stop-details', 'Gedetailleerde vertrektijden bij een halte'],
     ],
   },
   {
     id: 'plannen',
-    tab: 'Plannen',
+    tab: 'Reizen',
     icon: 'alt_route',
-    title: 'Van A naar B',
-    text: 'Vul vertrek en bestemming in, kies je vervoerswijze en vergelijk wat er gevonden wordt. Per optie zie je reisduur, overstappen en prijs.',
-    points: ['OV, bus, trein of lopen', 'Duur, overstappen en prijs per optie', 'Beste optie gemarkeerd'],
+    number: '03',
+    eyebrow: 'Van A naar B',
+    title: 'Niet één route. Jouw beste optie.',
+    text: 'Vul je bestemming in en vergelijk de beschikbare reizen. Met een overzicht van de reisduur, overstappen en verschillende mogelijkheden.',
+    points: ['Vertrek en bestemming invoeren', 'Vergelijk gevonden reisopties', 'Bekijk de stappen van je reis'],
     shots: [
-      ['trip-planner', 'De reisplanner met vertrek, bestemming en vervoerswijzen'],
-      ['route-options', 'Een lijst met gevonden routes en hun reisduur'],
+      ['trip-planner', 'De Glimp-reisplanner met vertrek en bestemming'],
+      ['route-options', 'Glimp toont verschillende reisopties'],
     ],
   },
   {
     id: 'volgen',
-    tab: 'Lijnen',
+    tab: 'Onderweg',
     icon: 'directions_bus',
-    title: 'Een lijn en voertuig volgen',
-    text: 'Bekijk het verloop van een lijn op de kaart en, waar de gegevens het toelaten, waar voertuigen zich op dat moment bevinden.',
-    points: ['Het volledige verloop van de lijn', 'Voertuigen volgen op de kaart', 'Hangt af van de databron'],
+    number: '04',
+    eyebrow: 'Blijf kijken',
+    title: 'Je lijn. Je rit. Meer overzicht.',
+    text: 'Bekijk de loop van een lijn op de kaart en ontdek waar voertuigen zijn als hun locatiegegevens beschikbaar zijn.',
+    points: ['Een lijn en het verloop ervan bekijken', 'Beschikbare voertuigposities tonen', 'Extra ritgegevens waar ondersteund'],
     shots: [
-      ['line-viewer', 'De lijnweergave met het verloop van een lijn op de kaart'],
-      ['bus-tracking', 'Kaart met een bus die gevolgd wordt'],
+      ['line-viewer', 'Lijnverloop in de Glimp-kaart'],
+      ['bus-tracking', 'Voertuig volgen in Glimp'],
     ],
   },
 ];
@@ -59,59 +67,66 @@ const features = [
 export default function Features() {
   const ref = useReveal();
   const [active, setActive] = useState(0);
-  // Op smalle schermen passen vier tabs alleen als ze de breedte verdelen (icoon boven label).
   const narrow = useMediaQuery('(max-width: 640px)');
 
   return (
-    <section className="section wrap" id="functies" ref={ref}>
-      <header className="section-head">
-        <p className="label">01 — Functies</p>
-        <h2>Alles wat je onderweg nodig hebt, op één kaart.</h2>
-        <p className="section-sub">
-          Geen overvolle startpagina: Glimp laat eerst zien waar je bent en laat je van daaruit verder
-          kijken.
-        </p>
-      </header>
+    <section className="section features-section" id="functies" ref={ref}>
+      <div className="wrap">
+        <div className="section-heading-row">
+          <header className="section-head">
+            <p className="eyebrow"><span className="section-num">01</span> Ontdek Glimp</p>
+            <h2>Alles op z'n plek.<br /><span className="muted-heading">Ook onderweg.</span></h2>
+          </header>
+          <p className="section-intro">Wat je onderweg zoekt, moet je meteen kunnen vinden. Glimp maakt de kaart het vertrekpunt voor alles wat daarna komt.</p>
+        </div>
 
-      <div className="feature-card">
-        <M3eTabs
-          className="tabs"
-          variant={narrow ? 'primary' : 'secondary'}
-          stretch={narrow}
-          disablePagination={narrow}
-          disableSwipe
-          onChange={(e) => {
-            const i = e.target?.selectedIndex;
-            if (typeof i === 'number' && i >= 0) setActive(i);
-          }}
-        >
-          {features.map((f, i) => (
-            <M3eTab key={`t-${f.id}`} htmlFor={`paneel-${f.id}`} selected={i === active}>
-              <M3eIcon slot="icon" name={f.icon} />
-              {f.tab}
-            </M3eTab>
-          ))}
-          {features.map((f) => (
-            <M3eTabPanel key={`p-${f.id}`} id={`paneel-${f.id}`}>
-              <div className="feature">
-                <div className="feature-copy">
-                  <h3>{f.title}</h3>
-                  <p>{f.text}</p>
-                  <ul className="points">
-                    {f.points.map((p) => (
-                      <li key={p}>{p}</li>
+        <div className="feature-shell">
+          <M3eTabs
+            className="feature-tabs"
+            variant={narrow ? 'primary' : 'secondary'}
+            stretch
+            disablePagination
+            disableSwipe
+            onChange={(event) => {
+              const index = event.target?.selectedIndex;
+              if (Number.isInteger(index) && index >= 0 && index < features.length) setActive(index);
+            }}
+          >
+            {features.map((feature, index) => (
+              <M3eTab key={feature.id} htmlFor={'feature-' + feature.id} selected={index === active}>
+                <M3eIcon slot="icon" name={feature.icon} />
+                {feature.tab}
+              </M3eTab>
+            ))}
+            {features.map((feature) => (
+              <M3eTabPanel key={feature.id} id={'feature-' + feature.id}>
+                <div className="feature-layout">
+                  <div className="feature-story">
+                    <span className="feature-overline">{feature.number} / {feature.eyebrow}</span>
+                    <h3>{feature.title}</h3>
+                    <p className="feature-description">{feature.text}</p>
+                    <ul className="feature-points">
+                      {feature.points.map((point) => (
+                        <li key={point}>
+                          <span className="point-check"><M3eIcon name="check" aria-hidden="true" /></span>
+                          {point}
+                        </li>
+                      ))}
+                    </ul>
+                    <span className="feature-count">{feature.number} <span>/ 04</span></span>
+                  </div>
+                  <div className="feature-gallery">
+                    <div className="gallery-track" aria-hidden="true" />
+                    {feature.shots.map(([shot, alt], index) => (
+                      <Phone key={shot} shot={shot} alt={alt} className={index === 0 ? 'gallery-main' : 'gallery-secondary'} />
                     ))}
-                  </ul>
+                    <span className="gallery-caption">ECHTE APP-SCHERMEN / GLIMP</span>
+                  </div>
                 </div>
-                <div className="feature-stage">
-                  {f.shots.map(([shot, alt]) => (
-                    <Phone key={shot} shot={shot} alt={alt} />
-                  ))}
-                </div>
-              </div>
-            </M3eTabPanel>
-          ))}
-        </M3eTabs>
+              </M3eTabPanel>
+            ))}
+          </M3eTabs>
+        </div>
       </div>
     </section>
   );
