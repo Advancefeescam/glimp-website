@@ -15,10 +15,9 @@ export default function Sources() {
         </div>
 
         <ul className="source-links">
-          {sources.map((source, index) => (
+          {sources.map((source) => (
             <li key={source.name}>
               <a href={source.href} target="_blank" rel="noopener noreferrer">
-                <span className="source-index" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
                 <span className="source-main">
                   <strong>{source.name}</strong>
                   <small>{source.role}</small>
