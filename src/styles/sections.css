@@ -50,9 +50,9 @@
 .lead { font-size:clamp(1.05rem,1.65vw,1.28rem); color:#d4dbee; max-width:43ch; line-height:1.68; }
 .actions { display:flex; align-items:center; gap:20px; flex-wrap:wrap; }
 .hero-primary {
-  --m3e-button-tonal-container-color:#c8d6ff;
-  --m3e-button-tonal-label-text-color:#162952;
-  --m3e-button-tonal-icon-color:#162952;
+  --m3e-tonal-button-container-color:#c8d6ff;
+  --m3e-tonal-button-label-text-color:#162952;
+  --m3e-tonal-button-icon-color:#162952;
   font-weight:750;
 }
 .hero-secondary {
@@ -91,11 +91,11 @@
 .journey-heading > p:last-child { max-width:440px; font-size:clamp(1.15rem,1.9vw,1.55rem); line-height:1.32; letter-spacing:-.04em; }
 .journey-heading strong { color:var(--accent); }
 .journey-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; }
-.journey-card { display:block; border-radius:32px; overflow:hidden; --m3e-card-container-shape:32px; }
+.journey-card { display:block; border-radius:32px; overflow:hidden; --m3e-card-shape:32px; }
 .journey-card-inner { min-height:285px; display:flex; flex-direction:column; padding:30px 30px 34px; }
-.journey-card.lilac { background:#e4e8ff; color:#243366; --m3e-card-filled-container-color:#e4e8ff; }
-.journey-card.mint { background:#d8eee8; color:#174739; --m3e-card-filled-container-color:#d8eee8; }
-.journey-card.peach { background:#f8e6d5; color:#653d21; --m3e-card-filled-container-color:#f8e6d5; }
+.journey-card.lilac { background:#e4e8ff; color:#243366; --m3e-filled-card-container-color:#e4e8ff; --m3e-filled-card-text-color:#243366; }
+.journey-card.mint { background:#d8eee8; color:#174739; --m3e-filled-card-container-color:#d8eee8; --m3e-filled-card-text-color:#174739; }
+.journey-card.peach { background:#f8e6d5; color:#653d21; --m3e-filled-card-container-color:#f8e6d5; --m3e-filled-card-text-color:#653d21; }
 .journey-card-top { display:flex; justify-content:space-between; align-items:center; margin-bottom:auto; padding-bottom:30px; }
 .step-number { font:500 .78rem var(--mono); letter-spacing:.1em; opacity:.72; }
 .journey-icon { display:grid; place-items:center; height:58px; width:58px; border-radius:21px; background:rgb(255 255 255 / .54); }
