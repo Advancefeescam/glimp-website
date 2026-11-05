@@ -7,12 +7,11 @@ export default function Sources() {
   return (
     <section className="section wrap data" id="gegevens" ref={ref}>
       <header className="section-head">
-        <p className="label">03 — Gegevens</p>
-        <h2>Waar de informatie vandaan komt.</h2>
+        <p className="label">04 — Achter de schermen</p>
+        <h2>Verschillende bronnen. Eén overzicht.</h2>
         <p className="section-sub">
-          Glimp combineert gegevens van verschillende diensten. Elke dienst heeft eigen voorwaarden,
-          dekking en beschikbaarheid, dus vertrektijden of voertuiggegevens zijn niet altijd volledig
-          of actueel.
+          Glimp brengt gegevens van verschillende diensten samen. Die hebben hun eigen dekking en verversing:
+          informatie kan ontbreken of afwijken. Glimp is onafhankelijk van deze aanbieders.
         </p>
       </header>
 
