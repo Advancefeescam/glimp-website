@@ -196,7 +196,6 @@
   --m3e-tab-selected-color: var(--brand);
   --m3e-tabs-active-indicator-color: var(--brand);
 }
-.feature-tabs m3e-tab-panel { display: block; }
 .feature-layout {
   display: grid; grid-template-columns: .94fr 1.06fr;
   min-height: 595px;
