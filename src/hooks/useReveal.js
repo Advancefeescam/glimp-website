@@ -1,29 +1,44 @@
 import { useEffect, useRef } from 'react';
 
-// Progressive enhancement: zonder observer en bij reduced motion is inhoud direct zichtbaar.
+// Animate only meaningful items, once. Content stays readable without JS,
+// IntersectionObserver or when the OS prefers reduced motion.
 export function useReveal() {
   const ref = useRef(null);
 
   useEffect(() => {
-    const el = ref.current;
-    if (!el || typeof IntersectionObserver === 'undefined') return undefined;
+    const section = ref.current;
+    if (!section || typeof IntersectionObserver === 'undefined') return undefined;
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return undefined;
+
+    const items = Array.from(section.querySelectorAll('[data-motion]'));
+    if (!items.length) return undefined;
 
     const observer = new IntersectionObserver(
       (entries) => {
-        if (entries[0]?.isIntersecting) {
-          el.dataset.reveal = 'in';
-          observer.disconnect();
+        for (const entry of entries) {
+          if (!entry.isIntersecting) continue;
+          entry.target.dataset.motion = 'shown';
+          observer.unobserve(entry.target);
         }
       },
-      { rootMargin: '0px 0px -7% 0px', threshold: 0.06 },
+      { rootMargin: '0px 0px -6% 0px', threshold: 0.06 },
     );
 
-    if (el.getBoundingClientRect().top > window.innerHeight * 0.92) {
-      el.dataset.reveal = 'pending';
-      observer.observe(el);
+    // Don't hide anything already visible on first paint or in a deep link.
+    for (const item of items) {
+      const bounds = item.getBoundingClientRect();
+      if (bounds.top > window.innerHeight * 0.94 && bounds.width > 0 && bounds.height > 0) {
+        item.dataset.motion = 'waiting';
+        observer.observe(item);
+      }
     }
-    return () => observer.disconnect();
+
+    return () => {
+      observer.disconnect();
+      for (const item of items) {
+        if (item.dataset.motion === 'waiting') item.dataset.motion = 'shown';
+      }
+    };
   }, []);
 
   return ref;
