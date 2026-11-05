@@ -20,9 +20,9 @@ export default function Themes() {
     <section className="section wrap themes" id="weergave" ref={ref}>
       <div className="themes-copy">
         <header className="section-head">
-          <p className="label">02 — Weergave</p>
-          <h2>Licht, donker of OLED.</h2>
-          <p className="section-sub">Kies de weergave die bij je past. Je instelling geldt voor de hele app.</p>
+          <p className="label">03 — Maak het eigen</p>
+          <h2>Goed zicht. Op jouw manier.</h2>
+          <p className="section-sub">Kies tussen licht, donker en OLED. De sfeer van de app pas je zelf aan.</p>
         </header>
 
         <M3eSegmentedButton
