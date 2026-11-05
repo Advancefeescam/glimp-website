@@ -8,9 +8,10 @@ import { useScrollSpy } from '../hooks/useScrollSpy';
 
 const nav = [
   { id: 'functies', label: 'Functies', icon: 'map' },
-  { id: 'weergave', label: 'Weergave', icon: 'palette' },
-  { id: 'gegevens', label: 'Gegevens', icon: 'database' },
-  { id: 'installeren', label: 'Installeren', icon: 'download' },
+  { id: 'ervaring', label: 'Reisplanner', icon: 'alt_route' },
+  { id: 'weergave', label: 'Thema’s', icon: 'palette' },
+  { id: 'gegevens', label: 'Databronnen', icon: 'database' },
+  { id: 'installeren', label: 'Download', icon: 'download' },
 ];
 const ids = nav.map((n) => n.id);
 
@@ -34,7 +35,7 @@ export default function Header() {
     const onDown = (e) => {
       if (headerRef.current && !headerRef.current.contains(e.target)) setOpen(false);
     };
-    const mq = window.matchMedia('(min-width: 861px)');
+    const mq = window.matchMedia('(min-width: 921px)');
     const onMq = () => mq.matches && setOpen(false);
     document.addEventListener('keydown', onKey);
     document.addEventListener('pointerdown', onDown);
@@ -64,7 +65,7 @@ export default function Header() {
       <div className="header-bar wrap">
         <a className="brand" href="#top" onClick={close} aria-label="Glimp, naar boven">
           <img src={`${import.meta.env.BASE_URL}assets/glimp-icon-192.png`} alt="" width="36" height="36" />
-          <span>glimp</span>
+          <span>glimp<span className="brand-stop">.</span></span>
         </a>
 
         <nav className="nav" aria-label="Hoofdnavigatie">
@@ -82,7 +83,7 @@ export default function Header() {
             size="small"
             href={links.releases}
             target="_blank"
-            rel="noreferrer"
+            rel="noopener noreferrer"
           >
             <M3eIcon slot="icon" name="download" />
             Download
