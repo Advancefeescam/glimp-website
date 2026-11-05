@@ -6,8 +6,8 @@ import { links } from '../links';
 import { useScrollSpy } from '../hooks/useScrollSpy';
 
 const navigation = [
-  { id: 'functies', label: 'Ontdek' },
-  { id: 'weergave', label: 'De ervaring' },
+  { id: 'functies', label: 'Functies' },
+  { id: 'weergave', label: 'Thema’s' },
   { id: 'gegevens', label: 'Databronnen' },
   { id: 'installeren', label: 'Installeren' },
 ];
@@ -21,26 +21,25 @@ export default function Header({ mode, onToggleTheme }) {
 
   useEffect(() => {
     if (!menuOpen) return undefined;
-
-    const handleKey = (event) => {
+    const onKeyDown = (event) => {
       if (event.key === 'Escape') {
         setMenuOpen(false);
         menuButtonRef.current?.focus();
       }
     };
-    const handleOutside = (event) => {
-      if (!headerRef.current?.contains(event.target)) setMenuOpen(false);
+    const onOutside = (event) => {
+      if (headerRef.current && !headerRef.current.contains(event.target)) setMenuOpen(false);
     };
     const mq = window.matchMedia('(min-width: 901px)');
-    const handleSize = () => { if (mq.matches) setMenuOpen(false); };
+    const onWidthChange = () => { if (mq.matches) setMenuOpen(false); };
 
-    document.addEventListener('keydown', handleKey);
-    document.addEventListener('pointerdown', handleOutside);
-    mq.addEventListener('change', handleSize);
+    document.addEventListener('keydown', onKeyDown);
+    document.addEventListener('pointerdown', onOutside);
+    mq.addEventListener('change', onWidthChange);
     return () => {
-      document.removeEventListener('keydown', handleKey);
-      document.removeEventListener('pointerdown', handleOutside);
-      mq.removeEventListener('change', handleSize);
+      document.removeEventListener('keydown', onKeyDown);
+      document.removeEventListener('pointerdown', onOutside);
+      mq.removeEventListener('change', onWidthChange);
     };
   }, [menuOpen]);
 
@@ -48,7 +47,7 @@ export default function Header({ mode, onToggleTheme }) {
     <header className="header" ref={headerRef}>
       <a className="skip" href="#main">Direct naar de inhoud</a>
       <div className="wrap header-bar">
-        <a className="brand" href="#top" onClick={() => setMenuOpen(false)} aria-label="Glimp — terug naar het begin">
+        <a className="brand" href="#top" onClick={() => setMenuOpen(false)} aria-label="Glimp — naar het begin">
           <span className="brand-icon">
             <img src={import.meta.env.BASE_URL + 'assets/glimp-icon.webp'} alt="" width="37" height="37" />
           </span>
@@ -67,21 +66,28 @@ export default function Header({ mode, onToggleTheme }) {
           <M3eIconButton
             className="scheme-toggle"
             variant="standard"
-            aria-label={mode === 'dark' ? 'Schakel naar licht thema' : 'Schakel naar donker thema'}
+            aria-label={mode === 'dark' ? 'Licht websitethema inschakelen' : 'Donker websitethema inschakelen'}
             title={mode === 'dark' ? 'Licht thema' : 'Donker thema'}
             onClick={onToggleTheme}
           >
             <M3eIcon name={mode === 'dark' ? 'light_mode' : 'dark_mode'} />
           </M3eIconButton>
+
           <M3eButton className="header-download" variant="filled" size="small"
             href={links.releases} target="_blank" rel="noopener noreferrer">
             <M3eIcon slot="icon" name="download" />
             Download Glimp
           </M3eButton>
+
+          <M3eButton className="mobile-download" variant="tonal" size="small"
+            href={links.releases} target="_blank" rel="noopener noreferrer">
+            APK
+          </M3eButton>
+
           <M3eIconButton
             ref={menuButtonRef}
             className="menu-btn"
-            variant="tonal"
+            variant="standard"
             aria-label={menuOpen ? 'Navigatiemenu sluiten' : 'Navigatiemenu openen'}
             aria-expanded={menuOpen}
             aria-controls="mobile-navigation"
@@ -92,19 +98,22 @@ export default function Header({ mode, onToggleTheme }) {
         </div>
       </div>
 
-      <nav
-        id="mobile-navigation"
-        className="mobile-navigation"
-        aria-label="Mobiele navigatie"
-        hidden={!menuOpen}
-      >
-        {navigation.map((item, index) => (
-          <a href={'#' + item.id} key={item.id} onClick={() => setMenuOpen(false)}>
-            <span className="mobile-nav-index">0{index + 1}</span>
-            <span>{item.label}</span>
-            <M3eIcon name="arrow_outward" aria-hidden="true" />
+      <nav id="mobile-navigation" className="mobile-navigation" aria-label="Mobiele navigatie" hidden={!menuOpen}>
+        {navigation.map((item) => (
+          <a
+            href={'#' + item.id}
+            key={item.id}
+            onClick={() => setMenuOpen(false)}
+            aria-current={active === item.id ? 'location' : undefined}
+          >
+            {item.label}
           </a>
         ))}
+        <a className="mobile-menu-download" href={links.releases} target="_blank" rel="noopener noreferrer"
+          onClick={() => setMenuOpen(false)}>
+          Download Glimp voor Android
+          <M3eIcon name="arrow_outward" aria-hidden="true" />
+        </a>
       </nav>
     </header>
   );

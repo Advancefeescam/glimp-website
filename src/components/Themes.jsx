@@ -4,50 +4,36 @@ import { M3eIcon } from '@m3e/react/icon';
 import { useReveal } from '../hooks/useReveal';
 
 const themes = [
-  { id: 'light', label: 'Licht', icon: 'light_mode', note: 'Voor de lichte momenten.', description: 'Helder en open.' },
-  { id: 'dark', label: 'Donker', icon: 'dark_mode', note: 'Rust voor je ogen.', description: 'Subtiel in het donker.' },
-  { id: 'oled', label: 'OLED', icon: 'contrast', note: 'Zo donker als je wilt.', description: 'Bijna volledig zwart.' },
+  { id: 'light', label: 'Licht', icon: 'light_mode', note: 'Helder en rustig, ook in daglicht.' },
+  { id: 'dark', label: 'Donker', icon: 'dark_mode', note: 'Aangenaam op een donkere reis.' },
+  { id: 'oled', label: 'OLED', icon: 'contrast', note: 'Diepzwarte vlakken op een OLED-scherm.' },
 ];
 
-// Een live kleurdemonstratie, geen uitgerekt screenshot. De oorspronkelijke
-// vierkante onboarding-screenshots blijven beschikbaar in public/screenshots/.
-function ThemePhone({ active }) {
-  const themeName = active === 'oled' ? 'OLED' : active === 'light' ? 'lichte' : 'donkere';
+// Dit is een live kleurvoorbeeld, geen screenshot van de Android-app.
+// Echte onboarding-screenshots blijven als losse bestanden beschikbaar.
+function ThemePreview({ active }) {
+  const label = themes.find((theme) => theme.id === active)?.label ?? 'Donker';
+
   return (
-    <div className="theme-device-frame" role="img" aria-label={'Illustratieve, volledige telefoonvoorvertoning van de ' + themeName + ' weergave van Glimp'}>
+    <div className="theme-device-frame" role="img" aria-label={'Illustratief ' + label + '-thema met drie voorbeeldkeuzes op een telefoonscherm'}>
       <div className={'theme-device-screen theme-device-screen-' + active} aria-hidden="true">
-        <div className="theme-device-status">
-          <span>GLIMP / THEMA</span>
-          <span className="theme-status-dots"><i /><i /><i /></span>
-        </div>
         <div className="theme-device-brand">
-          <span className="theme-app-icon">
-            <img src={import.meta.env.BASE_URL + 'assets/glimp-icon.webp'} alt="" width="27" height="27" />
-          </span>
+          <img src={import.meta.env.BASE_URL + 'assets/glimp-icon.webp'} alt="" width="32" height="32" />
           <span>glimp<span className="theme-brand-dot">.</span></span>
         </div>
         <div className="theme-device-content">
-          <span className="theme-device-step">WEERGAVE / 02</span>
-          <span className="theme-device-illustration"><M3eIcon name="palette" /></span>
-          <h3>Jouw Glimp.<br />Jouw stijl.</h3>
-          <p>Een weergave die bij jou past, waar je ook bent.</p>
+          <h3>Weergave</h3>
+          <p>Kies een thema dat bij je past.</p>
           <div className="theme-demo-panel">
-            <span className="theme-demo-label">Kies je weergave</span>
-            <div className="theme-demo-choices">
-              {themes.map((theme) => (
-                <div key={theme.id} className={'theme-demo-choice' + (theme.id === active ? ' selected' : '')}>
-                  <M3eIcon name={theme.icon} />
-                  <span>{theme.label}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-          <div className="theme-demo-palette">
-            <span className="theme-demo-palette-label">Kleuren uit jouw thema</span>
-            <span className="theme-demo-swatches"><i /><i /><i /><i /></span>
+            {themes.map((theme) => (
+              <div key={theme.id} className={'theme-demo-choice' + (theme.id === active ? ' selected' : '')}>
+                <M3eIcon name={theme.icon} />
+                <span>{theme.label}</span>
+              </div>
+            ))}
           </div>
         </div>
-        <div className="theme-device-gesture"><span /></div>
+        <div className="theme-device-gesture" />
       </div>
     </div>
   );
@@ -62,15 +48,14 @@ export default function Themes() {
     <section className="section themes-section" id="weergave" ref={ref}>
       <div className="wrap themes-layout">
         <div className="themes-information">
-          <p className="eyebrow"><span className="section-num">02</span> Jouw eigen sfeer</p>
-          <h2>Een andere sfeer.<br /><span className="muted-heading">Dezelfde eenvoud.</span></h2>
-          <p className="themes-lead">Licht overdag, donker onderweg of een diepzwarte OLED-weergave. Jij bepaalt hoe Glimp eruitziet.</p>
-
+          <p className="eyebrow">Weergave</p>
+          <h2>Jouw Glimp.<br /><span className="muted-heading">Jouw kleuren.</span></h2>
+          <p className="themes-lead">Licht, donker of OLED: kies wat prettig kijkt. De rest van de app past zich eraan aan.</p>
           <div className="theme-controls">
-            <span className="control-label">Probeer de app-thema's</span>
+            <span className="control-label">Bekijk de drie thema's</span>
             <M3eSegmentedButton
               className="theme-switch"
-              aria-label="Kies een app-weergave voor het voorbeeld"
+              aria-label="Kies een app-thema om te bekijken"
               onChange={(event) => {
                 const value = event.target?.value;
                 if (themes.some((theme) => theme.id === value)) setActive(value);
@@ -83,17 +68,12 @@ export default function Themes() {
                 </M3eButtonSegment>
               ))}
             </M3eSegmentedButton>
-            <p className="theme-description" aria-live="polite">
-              <strong>{current.note}</strong> {current.description}
-            </p>
+            <p className="theme-description" aria-live="polite">{current.note}</p>
           </div>
-          <p className="theme-aside">Ook de kaart heeft eigen stijlen en lagen, los van het app-thema.</p>
+          <p className="theme-aside">Illustratieve themaweergave. De app heeft daarnaast meerdere kaartstijlen.</p>
         </div>
-
         <div className={'theme-showcase theme-showcase-' + active}>
-          <div className="theme-showcase-shape" aria-hidden="true" />
-          <ThemePhone active={active} />
-          <p className="theme-visual-caption">INTERACTIEF KLEURENVOORBEELD <span>—</span> {current.label.toUpperCase()}</p>
+          <ThemePreview active={active} />
         </div>
       </div>
     </section>

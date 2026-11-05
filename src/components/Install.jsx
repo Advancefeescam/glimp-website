@@ -37,15 +37,10 @@ export default function Install() {
     <section className="section install-section" id="installeren" ref={ref}>
       <div className="wrap">
         <div className="download-panel">
-          <div className="download-decoration" aria-hidden="true">
-            <span className="download-circle download-circle-a" />
-            <span className="download-circle download-circle-b" />
-            <span className="download-circle download-circle-c" />
-          </div>
           <div className="download-content">
-            <p className="eyebrow download-eyebrow"><span className="section-num">04</span> Tijd om te gaan</p>
+            <p className="eyebrow download-eyebrow">Voor Android</p>
             <h2>Klaar voor<br /><span>de volgende rit?</span></h2>
-            <p>De kaart wacht op je. Download Glimp voor Android en ontdek het openbaar vervoer op jouw manier.</p>
+            <p>Download Glimp als APK en bekijk je reis vanaf de kaart.</p>
             <div className="download-actions">
               <M3eButton variant="filled" size="large" href={links.releases} target="_blank" rel="noopener noreferrer">
                 <M3eIcon name="download" slot="icon" />
@@ -55,7 +50,7 @@ export default function Install() {
                 Bekijk de broncode <M3eIcon name="arrow_outward" aria-hidden="true" />
               </a>
             </div>
-            <span className="download-note">Beschikbaar als Android-APK via GitHub · Actief in ontwikkeling</span>
+            <span className="download-note">APK via GitHub Releases · Glimp is in ontwikkeling</span>
           </div>
           <div className="download-illustration" aria-hidden="true">
             <Phone shot="route-options" alt="" className="download-phone" />

@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import { M3eTheme } from '@m3e/react/theme';
 import Header from './components/Header';
 import Hero from './components/Hero';
-import Board from './components/Board';
 import Features from './components/Features';
 import Themes from './components/Themes';
 import Sources from './components/Sources';
@@ -16,7 +15,7 @@ function getInitialTheme() {
     const saved = window.localStorage.getItem(STORAGE_KEY);
     if (saved === 'dark' || saved === 'light') return saved;
   } catch {
-    // Opslag is optioneel; de website blijft bruikbaar zonder localStorage.
+    // De website blijft werken zonder opslag.
   }
   return 'light';
 }
@@ -31,7 +30,7 @@ export default function App() {
     try {
       window.localStorage.setItem(STORAGE_KEY, mode);
     } catch {
-      // Browsers in privémodus kunnen opslag blokkeren.
+      // Lokale opslag is optioneel.
     }
   }, [mode]);
 
@@ -47,7 +46,6 @@ export default function App() {
       <Header mode={mode} onToggleTheme={() => setMode((value) => value === 'dark' ? 'light' : 'dark')} />
       <main id="main">
         <Hero />
-        <Board />
         <Features />
         <Themes />
         <Sources />
