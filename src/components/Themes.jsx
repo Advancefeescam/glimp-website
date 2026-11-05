@@ -47,7 +47,7 @@ export default function Themes() {
   return (
     <section className="section themes-section" id="weergave" ref={ref}>
       <div className="wrap themes-layout">
-        <div className="themes-information" data-motion>
+        <div className="themes-information" data-motion="">
           <p className="eyebrow">Weergave</p>
           <h2>Jouw Glimp.<br /><span className="muted-heading">Jouw kleuren.</span></h2>
           <p className="themes-lead">Licht, donker of OLED: kies wat prettig kijkt. De rest van de app past zich eraan aan.</p>
@@ -72,7 +72,7 @@ export default function Themes() {
           </div>
           <p className="theme-aside">Illustratieve themaweergave. De app heeft daarnaast meerdere kaartstijlen.</p>
         </div>
-        <div className={'theme-showcase theme-showcase-' + active} data-motion>
+        <div className={'theme-showcase theme-showcase-' + active} data-motion="">
           <ThemePreview active={active} />
         </div>
       </div>
