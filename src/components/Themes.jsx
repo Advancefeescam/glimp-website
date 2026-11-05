@@ -57,7 +57,7 @@ export default function Themes() {
                 <img
                   key={theme.id}
                   src={import.meta.env.BASE_URL + 'screenshots/theme-' + theme.id + '.webp'}
-                  alt={'Voorbeeld van het ' + theme.label.toLowerCase() + 'e thema in Glimp'}
+                  alt={theme.id === 'oled' ? 'Voorbeeld van de OLED-weergave in Glimp' : 'Voorbeeld van het ' + theme.label.toLowerCase() + 'e thema in Glimp'}
                   width="720" height="718"
                   loading="lazy"
                   decoding="async"
