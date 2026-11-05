@@ -35,7 +35,7 @@ const features = [
     tab: 'Plannen',
     icon: 'alt_route',
     title: 'Van A naar B',
-    text: 'Vul vertrek en bestemming in, kies je vervoerswijze en vergelijk wat er gevonden wordt. Per optie zie je reisduur, overstappen en prijs.',
+    text: 'Vul vertrek en bestemming in, kies je vervoerswijze en vergelijk wat er gevonden wordt. Per optie zie je de reisduur, overstappen en eventuele prijsinformatie.',
     points: ['OV, bus, trein of lopen', 'Duur, overstappen en prijs per optie', 'Beste optie gemarkeerd'],
     shots: [
       ['trip-planner', 'De reisplanner met vertrek, bestemming en vervoerswijzen'],
@@ -65,11 +65,10 @@ export default function Features() {
   return (
     <section className="section wrap" id="functies" ref={ref}>
       <header className="section-head">
-        <p className="label">01 — Functies</p>
-        <h2>Alles wat je onderweg nodig hebt, op één kaart.</h2>
+        <p className="label">01 — Ontdek de app</p>
+        <h2>De app die met je meereist.</h2>
         <p className="section-sub">
-          Geen overvolle startpagina: Glimp laat eerst zien waar je bent en laat je van daaruit verder
-          kijken.
+          Van haltes tot reisopties en voertuiggegevens: alles begint bij het overzicht.
         </p>
       </header>
 
