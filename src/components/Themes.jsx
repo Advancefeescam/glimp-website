@@ -9,6 +9,50 @@ const themes = [
   { id: 'oled', label: 'OLED', icon: 'contrast', note: 'Zo donker als je wilt.', description: 'Bijna volledig zwart.' },
 ];
 
+// Een live kleurdemonstratie, geen uitgerekt screenshot. De oorspronkelijke
+// vierkante onboarding-screenshots blijven beschikbaar in public/screenshots/.
+function ThemePhone({ active }) {
+  const themeName = active === 'oled' ? 'OLED' : active === 'light' ? 'lichte' : 'donkere';
+  return (
+    <div className="theme-device-frame" role="img" aria-label={'Illustratieve, volledige telefoonvoorvertoning van de ' + themeName + ' weergave van Glimp'}>
+      <div className={'theme-device-screen theme-device-screen-' + active} aria-hidden="true">
+        <div className="theme-device-status">
+          <span>GLIMP / THEMA</span>
+          <span className="theme-status-dots"><i /><i /><i /></span>
+        </div>
+        <div className="theme-device-brand">
+          <span className="theme-app-icon">
+            <img src={import.meta.env.BASE_URL + 'assets/glimp-icon.webp'} alt="" width="27" height="27" />
+          </span>
+          <span>glimp<span className="theme-brand-dot">.</span></span>
+        </div>
+        <div className="theme-device-content">
+          <span className="theme-device-step">WEERGAVE / 02</span>
+          <span className="theme-device-illustration"><M3eIcon name="palette" /></span>
+          <h3>Jouw Glimp.<br />Jouw stijl.</h3>
+          <p>Een weergave die bij jou past, waar je ook bent.</p>
+          <div className="theme-demo-panel">
+            <span className="theme-demo-label">Kies je weergave</span>
+            <div className="theme-demo-choices">
+              {themes.map((theme) => (
+                <div key={theme.id} className={'theme-demo-choice' + (theme.id === active ? ' selected' : '')}>
+                  <M3eIcon name={theme.icon} />
+                  <span>{theme.label}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="theme-demo-palette">
+            <span className="theme-demo-palette-label">Kleuren uit jouw thema</span>
+            <span className="theme-demo-swatches"><i /><i /><i /><i /></span>
+          </div>
+        </div>
+        <div className="theme-device-gesture"><span /></div>
+      </div>
+    </div>
+  );
+}
+
 export default function Themes() {
   const [active, setActive] = useState('dark');
   const current = themes.find((theme) => theme.id === active);
@@ -45,28 +89,11 @@ export default function Themes() {
           </div>
           <p className="theme-aside">Ook de kaart heeft eigen stijlen en lagen, los van het app-thema.</p>
         </div>
+
         <div className={'theme-showcase theme-showcase-' + active}>
           <div className="theme-showcase-shape" aria-hidden="true" />
-          <div className="theme-preview">
-            <div className="theme-preview-top">
-              <span className="preview-dots" aria-hidden="true"><i /><i /><i /></span>
-              <span>THEME / {active.toUpperCase()}</span>
-            </div>
-            <div className="theme-preview-image">
-              {themes.map((theme) => (
-                <img
-                  key={theme.id}
-                  src={import.meta.env.BASE_URL + 'screenshots/theme-' + theme.id + '.webp'}
-                  alt={theme.id === 'oled' ? 'Voorbeeld van de OLED-weergave in Glimp' : 'Voorbeeld van het ' + theme.label.toLowerCase() + 'e thema in Glimp'}
-                  width="720" height="718"
-                  loading="lazy"
-                  decoding="async"
-                  className={theme.id === active ? 'is-active' : ''}
-                  aria-hidden={theme.id === active ? undefined : 'true'}
-                />
-              ))}
-            </div>
-          </div>
+          <ThemePhone active={active} />
+          <p className="theme-visual-caption">INTERACTIEF KLEURENVOORBEELD <span>—</span> {current.label.toUpperCase()}</p>
         </div>
       </div>
     </section>
