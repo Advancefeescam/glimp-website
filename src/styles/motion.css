@@ -1,0 +1,141 @@
+/* Glimp motion: one-time, purposeful and respectful of OS accessibility.
+   No endless floating objects, scroll parallax, fake live pulses or JS scroll listeners. */
+
+@media (prefers-reduced-motion: no-preference) {
+  :root {
+    --glimp-motion-ease: cubic-bezier(.2, .78, .2, 1);
+    --glimp-motion-fast: 180ms;
+    --glimp-motion-standard: 430ms;
+  }
+
+  @keyframes glimp-arrive {
+    from { opacity: 0; transform: translate3d(0, 18px, 0); }
+    to   { opacity: 1; transform: translate3d(0, 0, 0); }
+  }
+
+  @keyframes glimp-product-arrive {
+    from { opacity: 0; transform: translate3d(0, 18px, 0) scale(.985); }
+    to   { opacity: 1; transform: translate3d(0, 0, 0) scale(1); }
+  }
+
+  /* Enter once at page load; the primary content never relies on an observer. */
+  .hero-category,
+  .hero h1,
+  .hero-description,
+  .hero-actions,
+  .hero-platform-note {
+    animation: glimp-arrive 550ms var(--glimp-motion-ease) both;
+  }
+  .hero-category      { animation-delay: 10ms; }
+  .hero h1            { animation-delay: 60ms; }
+  .hero-description   { animation-delay: 115ms; }
+  .hero-actions       { animation-delay: 165ms; }
+  .hero-platform-note { animation-delay: 205ms; }
+  .hero-product-desktop,
+  .hero-product-mobile {
+    animation: glimp-product-arrive 650ms var(--glimp-motion-ease) 95ms both;
+  }
+
+  /* Only below-fold elements are marked as waiting by useReveal().
+     No JS, no observer, an already visible element: everything remains visible. */
+  [data-motion='waiting'] {
+    opacity: 0;
+    transform: translate3d(0, 18px, 0);
+  }
+  [data-motion='shown'] {
+    animation: glimp-arrive 510ms var(--glimp-motion-ease) both;
+  }
+  .source-links li[data-motion='shown'] { animation-duration: 390ms; }
+  .install-steps li[data-motion='shown'] { animation-duration: 420ms; }
+
+  /* Fresh key for the selected M3E tab panel gives feedback on a real action. */
+  .feature-layout[data-feature-active='true'] .feature-story {
+    animation: glimp-arrive 345ms var(--glimp-motion-ease) both;
+  }
+  .feature-layout[data-feature-active='true'] .feature-gallery {
+    animation: glimp-arrive 410ms var(--glimp-motion-ease) 45ms both;
+  }
+
+  /* Theme changes communicate selection; nothing moves while idle. */
+  .theme-device-screen,
+  .theme-demo-choice,
+  .theme-showcase {
+    transition-duration: 220ms;
+    transition-timing-function: var(--glimp-motion-ease);
+  }
+  .theme-demo-choice {
+    transition-property: color, background-color, border-color, transform;
+  }
+  .theme-demo-choice.selected {
+    transform: translateY(-2px);
+  }
+
+  /* Calm crossfades when the user explicitly changes the website's theme. */
+  .site,
+  .header,
+  .features-section,
+  .themes-section,
+  .sources-section,
+  .feature-shell,
+  .mobile-feature-card {
+    transition: background-color 240ms ease, color 240ms ease, border-color 240ms ease;
+  }
+
+  /* Feedback only where an action exists. No hover states on static screenshots. */
+  .source-arrow,
+  .download-secondary m3e-icon,
+  .footer-nav-wrap a m3e-icon,
+  .footer-lower a m3e-icon {
+    transition: transform var(--glimp-motion-fast) ease;
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .source-links a:is(:hover, :focus-visible) .source-arrow,
+    .download-secondary:is(:hover, :focus-visible) m3e-icon,
+    .footer-nav-wrap a:is(:hover, :focus-visible) m3e-icon {
+      transform: translate(3px, -2px);
+    }
+    .footer-lower a:is(:hover, :focus-visible) m3e-icon {
+      transform: translateY(-3px);
+    }
+  }
+
+  /* Smaller distances and quicker transitions on touch-sized screens. */
+  @media (max-width: 767px) {
+    @keyframes glimp-mobile-arrive {
+      from { opacity: 0; transform: translate3d(0, 11px, 0); }
+      to   { opacity: 1; transform: none; }
+    }
+    .hero-category,
+    .hero h1,
+    .hero-description,
+    .hero-actions,
+    .hero-platform-note {
+      animation-name: glimp-mobile-arrive;
+      animation-duration: 385ms;
+    }
+    .hero-product-mobile {
+      animation: glimp-mobile-arrive 500ms var(--glimp-motion-ease) 80ms both;
+    }
+    [data-motion='waiting'] {
+      transform: translate3d(0, 11px, 0);
+    }
+    [data-motion='shown'] {
+      animation: glimp-mobile-arrive 390ms var(--glimp-motion-ease) both;
+    }
+    .mobile-feature-card[data-motion='shown'] {
+      animation-duration: 450ms;
+    }
+  }
+}
+
+/* If reduced-motion is enabled after the page loaded, even queued
+   reveal items become immediately visible. Functional M3E controls remain. */
+@media (prefers-reduced-motion: reduce) {
+  [data-motion='waiting'],
+  [data-motion='shown'] {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+  }
+  .theme-demo-choice.selected { transform: none; }
+}

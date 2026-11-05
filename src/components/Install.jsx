@@ -36,7 +36,7 @@ export default function Install() {
   return (
     <section className="section install-section" id="installeren" ref={ref}>
       <div className="wrap">
-        <div className="download-panel">
+        <div className="download-panel" data-motion="">
           <div className="download-content">
             <p className="eyebrow download-eyebrow">Voor Android</p>
             <h2>Klaar voor<br /><span>de volgende rit?</span></h2>
@@ -58,13 +58,13 @@ export default function Install() {
         </div>
 
         <div className="install-how">
-          <div className="install-how-title">
+          <div className="install-how-title" data-motion="">
             <p className="eyebrow">Zo werkt het</p>
             <h3>Drie stappen.<br />Dan ben je onderweg.</h3>
           </div>
           <ol className="install-steps">
             {steps.map((step) => (
-              <li key={step.number}>
+              <li key={step.number} data-motion="">
                 <span className="install-step-number">{step.number}</span>
                 <div>
                   <h4>{step.title}</h4>
@@ -76,12 +76,12 @@ export default function Install() {
         </div>
 
         <div className="faq-layout">
-          <div className="faq-intro">
+          <div className="faq-intro" data-motion="">
             <p className="eyebrow">Goed om te weten</p>
             <h3>Veelgestelde<br />vragen.</h3>
             <p>Staat je vraag er niet tussen? Je kunt feedback en problemen melden op <a href={links.issues} target="_blank" rel="noopener noreferrer">GitHub Issues</a>.</p>
           </div>
-          <div className="faq-list">
+          <div className="faq-list" data-motion="">
             <M3eAccordion>
               {questions.map((item) => (
                 <M3eExpansionPanel key={item.question}>

@@ -69,7 +69,7 @@ function DesktopFeatures() {
   const [active, setActive] = useState(0);
 
   return (
-    <div className="feature-shell">
+    <div className="feature-shell" data-motion="">
       <M3eTabs
         className="feature-tabs"
         variant="secondary"
@@ -87,9 +87,9 @@ function DesktopFeatures() {
             {feature.tab}
           </M3eTab>
         ))}
-        {features.map((feature) => (
+        {features.map((feature, index) => (
           <M3eTabPanel key={feature.id} id={'feature-' + feature.id}>
-            <div className="feature-layout">
+            <div className="feature-layout" key={active === index ? feature.id + '-shown' : feature.id + '-idle'} data-feature-active={active === index}>
               <div className="feature-story">
                 <span className="feature-overline">{feature.number} / {feature.eyebrow}</span>
                 <h3>{feature.title}</h3>
@@ -117,7 +117,7 @@ function MobileFeatures() {
       {features.map((feature) => {
         const [shot, alt] = feature.mobileShot ?? feature.shots[0];
         return (
-          <article className="mobile-feature-card" key={feature.id}>
+          <article className="mobile-feature-card" key={feature.id} data-motion="">
             <div className="mobile-feature-copy">
               <p className="mobile-feature-eyebrow">{feature.eyebrow}</p>
               <h3>{feature.title}</h3>
@@ -141,7 +141,7 @@ export default function Features() {
   return (
     <section className="section features-section" id="functies" ref={ref}>
       <div className="wrap">
-        <div className="section-heading-row">
+        <div className="section-heading-row" data-motion="">
           <header className="section-head">
             <p className="eyebrow">Ontdek Glimp</p>
             <h2>Alles op z'n plek.<br /><span className="muted-heading">Ook onderweg.</span></h2>

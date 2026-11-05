@@ -53,6 +53,7 @@ De site gebruikt **Material 3 Expressive** waar interactie nodig is: theming, kn
 - **Databronnen:** uitleg welke externe diensten worden gebruikt en waarom informatie kan afwijken.
 - **Download en FAQ:** uitleg over Android-installatie en links naar releases.
 - **Toegankelijkheid:** leesbare typografie, skiplink, toetsenbordfocus, alt-teksten en respect voor minder beweging.
+- **Beweging:** korte entree-animaties bij het laden, eenmalige reveals per kaart/tekstblok, een lichte overgang bij functietabs en subtiele feedback bij echte links. Op mobiel sneller en met minder afstand. Bij `prefers-reduced-motion: reduce` valt decoratieve motion weg; er draait geen permanente parallax of animatielus. De CSS staat in `src/styles/motion.css`.
 
 ### Projectstructuur
 
