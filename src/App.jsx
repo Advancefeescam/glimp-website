@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { M3eTheme } from '@m3e/react/theme';
 import Header from './components/Header';
 import Hero from './components/Hero';
@@ -8,12 +9,42 @@ import Sources from './components/Sources';
 import Install from './components/Install';
 import Footer from './components/Footer';
 
-// M3eTheme genereert het volledige Material 3-kleurenpalet uit één basiskleur.
-// De kleur komt overeen met het blauw van de app zelf.
+const STORAGE_KEY = 'glimp-website-theme';
+
+function getInitialTheme() {
+  try {
+    const saved = window.localStorage.getItem(STORAGE_KEY);
+    if (saved === 'dark' || saved === 'light') return saved;
+  } catch {
+    // Opslag is optioneel; de website blijft bruikbaar zonder localStorage.
+  }
+  return 'light';
+}
+
 export default function App() {
+  const [mode, setMode] = useState(getInitialTheme);
+
+  useEffect(() => {
+    document.documentElement.style.colorScheme = mode;
+    const meta = document.querySelector('meta[name="theme-color"]');
+    if (meta) meta.setAttribute('content', mode === 'dark' ? '#101722' : '#f7f9ff');
+    try {
+      window.localStorage.setItem(STORAGE_KEY, mode);
+    } catch {
+      // Browsers in privémodus kunnen opslag blokkeren.
+    }
+  }, [mode]);
+
   return (
-    <M3eTheme className="site" color="#4a6bb0" scheme="dark" variant="tonal-spot" motion="expressive">
-      <Header />
+    <M3eTheme
+      className="site"
+      data-site-theme={mode}
+      color="#3b5fd0"
+      scheme={mode}
+      variant="tonal-spot"
+      motion="expressive"
+    >
+      <Header mode={mode} onToggleTheme={() => setMode((value) => value === 'dark' ? 'light' : 'dark')} />
       <main id="main">
         <Hero />
         <Board />
