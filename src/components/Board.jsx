@@ -1,25 +1,26 @@
-// Strook onder de hero, in de stijl van een vertrekbord. Alleen feiten uit de app.
-const rows = [
-  { chip: '5+', color: 'green', title: 'Databronnen', note: 'gecombineerd in één app' },
-  { chip: '3', color: 'orange', title: 'Weergaves', note: 'licht, donker en OLED' },
-  { chip: '4', color: 'blue', title: 'Hoofdschermen', note: 'kaart, favorieten, meldingen, instellingen' },
-  { chip: 'NL', color: 'red', title: 'Openbaar vervoer', note: 'gebouwd voor Nederland' },
+const highlights = [
+  { index: '01', title: 'Vind je halte', text: 'Alles begint op de kaart.', color: 'mint' },
+  { index: '02', title: 'Zie wat vertrekt', text: 'De volgende ritten op een rij.', color: 'blue' },
+  { index: '03', title: 'Kies jouw route', text: 'Vergelijk je reisopties.', color: 'orange' },
 ];
 
 export default function Board() {
   return (
-    <section className="board" aria-label="Glimp in cijfers">
-      <ul className="wrap board-list">
-        {rows.map((r) => (
-          <li key={r.title}>
-            <span className={`chip ${r.color}`}>{r.chip}</span>
-            <span className="board-text">
-              <strong>{r.title}</strong>
-              <small>{r.note}</small>
-            </span>
-          </li>
-        ))}
-      </ul>
+    <section className="journey-band" aria-label="Van halte naar bestemming">
+      <div className="wrap journey-band-inner">
+        <p className="journey-intro">Van hier <span aria-hidden="true">→</span> naar daar.</p>
+        <ol className="journey-stops">
+          {highlights.map((item) => (
+            <li key={item.index}>
+              <span className={'journey-node ' + item.color} aria-hidden="true" />
+              <div>
+                <span className="journey-step">{item.index} / {item.title}</span>
+                <span className="journey-detail">{item.text}</span>
+              </div>
+            </li>
+          ))}
+        </ol>
+      </div>
     </section>
   );
 }
