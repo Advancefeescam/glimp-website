@@ -1,0 +1,50 @@
+name: "🐛 Bug op de website"
+description: "Een fout in de Glimp-productwebsite melden — niet in de Android-app."
+title: "[Websitebug] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Bedankt voor je melding! **Deze repository is alleen de website.**
+        Bugs in de Android-app (kaart, routeplanner, haltes, APK) horen niet bij dit formulier.
+        Vermeld geen wachtwoorden, tokens of andere privégegevens.
+  - type: input
+    id: url
+    attributes:
+      label: Waar gebeurt het?
+      description: "De URL of de sectie van de website."
+      placeholder: "Bijvoorbeeld: https://advancefeescam.github.io/glimp-website/#weergave"
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Hoe is het probleem te reproduceren?
+      description: "Geef duidelijke stappen en wat er gebeurt."
+      placeholder: |
+        1. Open de website
+        2. Klik op ...
+        3. Zie ...
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Wat verwachtte je?
+      placeholder: "Ik verwachtte dat..."
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Browser en apparaat
+      placeholder: "Bijvoorbeeld: Firefox op Windows 11, of Chrome op Android 16"
+    validations:
+      required: true
+  - type: textarea
+    id: visual
+    attributes:
+      label: Screenshots of extra context (optioneel)
+      description: "Sleep hier afbeeldingen in; verwijder eerst eventueel zichtbare privégegevens."
+    validations:
+      required: false
