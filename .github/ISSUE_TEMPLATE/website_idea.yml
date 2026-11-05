@@ -1,0 +1,30 @@
+name: "✨ Idee voor de website"
+description: "Een verbetering voorstellen voor de website, niet voor de Android-app."
+title: "[Website-idee] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Dit formulier is voor **Glimp Website**: ontwerp, tekst, toegankelijkheid, navigatie of uitleg.
+        Appfuncties zoals nieuwe OV-data of routeplanneropties horen bij het aparte app-project.
+  - type: textarea
+    id: problem
+    attributes:
+      label: Welk probleem wil je oplossen?
+      placeholder: "Op de website is ... lastig of onduidelijk."
+    validations:
+      required: true
+  - type: textarea
+    id: solution
+    attributes:
+      label: Jouw voorstel
+      placeholder: "Een betere oplossing zou zijn..."
+    validations:
+      required: true
+  - type: textarea
+    id: references
+    attributes:
+      label: Inspiratie of screenshots (optioneel)
+      description: "Links, screenshots en aanvullende context."
+    validations:
+      required: false
