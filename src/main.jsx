@@ -6,6 +6,7 @@ import '@fontsource/dm-mono/500.css';
 import './icons';
 import './styles/base.css';
 import './styles/sections.css';
+import './styles/motion.css';
 import App from './App';
 
 createRoot(document.getElementById('root')).render(
