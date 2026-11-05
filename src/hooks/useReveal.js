@@ -1,30 +1,29 @@
 import { useEffect, useRef } from 'react';
 
-// Laat een element subtiel inschuiven zodra het in beeld komt.
-// Zonder JS, zonder IntersectionObserver of met "reduce motion" blijft alles gewoon zichtbaar.
+// Progressive enhancement: zonder observer en bij reduced motion is inhoud direct zichtbaar.
 export function useReveal() {
   const ref = useRef(null);
 
   useEffect(() => {
     const el = ref.current;
-    if (!el || typeof IntersectionObserver === 'undefined') return;
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (!el || typeof IntersectionObserver === 'undefined') return undefined;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return undefined;
 
-    const rect = el.getBoundingClientRect();
-    if (rect.top < window.innerHeight * 0.9) return; // al in beeld: niets doen
-
-    el.dataset.reveal = 'pending';
-    const io = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0]?.isIntersecting) {
           el.dataset.reveal = 'in';
-          io.disconnect();
+          observer.disconnect();
         }
       },
-      { rootMargin: '0px 0px -8% 0px', threshold: 0.08 },
+      { rootMargin: '0px 0px -7% 0px', threshold: 0.06 },
     );
-    io.observe(el);
-    return () => io.disconnect();
+
+    if (el.getBoundingClientRect().top > window.innerHeight * 0.92) {
+      el.dataset.reveal = 'pending';
+      observer.observe(el);
+    }
+    return () => observer.disconnect();
   }, []);
 
   return ref;
