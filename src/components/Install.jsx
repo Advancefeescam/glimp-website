@@ -15,9 +15,9 @@ const steps = [
 ];
 
 const status = [
-  { platform: 'Android', state: 'In actieve ontwikkeling', tone: 'ok' },
+  { platform: 'Android', state: 'APK via GitHub', tone: 'ok' },
   { platform: 'iOS', state: 'Geen ondersteunde release', tone: 'no' },
-  { platform: 'Web', state: 'Alleen ontwikkelomgeving', tone: 'no' },
+  { platform: 'Web', state: 'Niet afzonderlijk ondersteund', tone: 'no' },
 ];
 
 const faq = [
@@ -44,8 +44,8 @@ export default function Install() {
   return (
     <section className="section wrap install" id="installeren" ref={ref}>
       <header className="section-head">
-        <p className="label">04 — Installeren</p>
-        <h2>In drie stappen op je telefoon.</h2>
+        <p className="label">05 — Begin je reis</p>
+        <h2>Klaar voor je volgende halte?</h2>
       </header>
 
       <div className="install-grid">
@@ -73,7 +73,7 @@ export default function Install() {
           </ul>
           <M3eButton variant="filled" size="medium" href={links.releases} target="_blank" rel="noreferrer">
             <M3eIcon slot="icon" name="android" />
-            Naar de nieuwste release
+            Download de Android-app
           </M3eButton>
         </aside>
       </div>
