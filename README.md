@@ -47,8 +47,8 @@ De website is bewust **geen werkende OV-app**: hij haalt geen live vertrektijden
 
 De site gebruikt **Material 3 Expressive** waar interactie nodig is: theming, knoppen, tabs, segmented buttons, iconen en uitklapbare FAQ's. De vrije, redactionele layouts zijn gemaakt met semantische React-componenten en CSS.
 
-- **Productgerichte hero:** echte screenshots van Glimp in telefoonframes.
-- **Functies:** M3E-tabs voor kaart, vertrektijden, reisopties en onderweg.
+- **Aparte desktop- en mobiele presentatie:** op desktop een rustige hero met twee echte Glimp-schermen en interactieve M3E-functietabs; op mobiel één groot screenshot en vier direct leesbare functiekaarten zonder kleine tabs.
+- **Bewust terughoudend ontwerp:** geen nepstatus, decoratieve vertrekcijfers of overbodige labels; de echte app-schermen staan centraal.
 - **Licht, donker en OLED:** interactieve, illustratieve thema-preview. Dit staat los van het lichte/donkere **website**-thema.
 - **Databronnen:** uitleg welke externe diensten worden gebruikt en waarom informatie kan afwijken.
 - **Download en FAQ:** uitleg over Android-installatie en links naar releases.
