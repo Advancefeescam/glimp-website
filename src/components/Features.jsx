@@ -69,7 +69,7 @@ function DesktopFeatures() {
   const [active, setActive] = useState(0);
 
   return (
-    <div className="feature-shell" data-motion>
+    <div className="feature-shell" data-motion="">
       <M3eTabs
         className="feature-tabs"
         variant="secondary"
@@ -117,7 +117,7 @@ function MobileFeatures() {
       {features.map((feature) => {
         const [shot, alt] = feature.mobileShot ?? feature.shots[0];
         return (
-          <article className="mobile-feature-card" key={feature.id} data-motion>
+          <article className="mobile-feature-card" key={feature.id} data-motion="">
             <div className="mobile-feature-copy">
               <p className="mobile-feature-eyebrow">{feature.eyebrow}</p>
               <h3>{feature.title}</h3>
@@ -141,7 +141,7 @@ export default function Features() {
   return (
     <section className="section features-section" id="functies" ref={ref}>
       <div className="wrap">
-        <div className="section-heading-row" data-motion>
+        <div className="section-heading-row" data-motion="">
           <header className="section-head">
             <p className="eyebrow">Ontdek Glimp</p>
             <h2>Alles op z'n plek.<br /><span className="muted-heading">Ook onderweg.</span></h2>
