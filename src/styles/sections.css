@@ -598,6 +598,7 @@
   .hero-product-desktop { display: none; }
   .hero-product-mobile {
     position: relative;
+    isolation: isolate;
     display: grid;
     justify-items: center;
     align-content: start;
