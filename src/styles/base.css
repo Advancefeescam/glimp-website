@@ -96,11 +96,6 @@ img { max-width: 100%; }
   text-transform: uppercase;
   color: var(--brand-strong);
 }
-.section-num {
-  display: inline-grid; place-items: center;
-  width: 30px; height: 30px; border: 1px solid currentColor;
-  border-radius: 10px; font-size: .72rem;
-}
 .section { padding-block: clamp(88px, 10vw, 152px); }
 .section-head h2,
 .themes-information h2,
@@ -178,6 +173,7 @@ img { max-width: 100%; }
 .header-actions { display: flex; align-items: center; gap: 10px; }
 .scheme-toggle { color: var(--ink) !important; }
 .header-download { white-space: nowrap; }
+.mobile-download { display: none; }
 .menu-btn { display: none; }
 .mobile-navigation[hidden] { display: none !important; }
 .mobile-navigation {
@@ -193,14 +189,20 @@ img { max-width: 100%; }
   animation: menu-appear .2s cubic-bezier(.2,.8,.2,1);
 }
 .mobile-navigation a {
-  display: grid; grid-template-columns: 40px 1fr 24px; align-items: center;
-  min-height: 56px; padding: 8px 12px;
-  border-radius: 15px; font-weight: 740;
+  display: flex; justify-content: space-between; align-items: center;
+  min-height: 54px; padding: 9px 15px;
+  border-radius: 13px; font-weight: 740;
+  font-size: 1rem;
 }
-.mobile-navigation a:hover { background: var(--surface-2); }
-.mobile-navigation a + a { border-top: 1px solid var(--stroke); }
-.mobile-nav-index { font: .75rem var(--mono); color: var(--ink-faint); }
-.mobile-navigation m3e-icon { color: var(--brand); }
+.mobile-navigation a:hover,
+.mobile-navigation a[aria-current='location'] { background: var(--surface-2); color: var(--brand-strong); }
+.mobile-navigation a.mobile-menu-download {
+  margin-top: 10px;
+  padding-inline: 16px;
+  background: var(--brand-wash); color: var(--brand-strong);
+  font-size: .91rem;
+}
+.mobile-menu-download m3e-icon { font-size: 19px; }
 @keyframes menu-appear { from { opacity: 0; transform: translateY(-8px) scale(.98) } to { opacity: 1; transform: none } }
 
 /* Footer is deliberately an inverse surface in both theme modes. */
@@ -262,6 +264,7 @@ img { max-width: 100%; }
   .brand-icon { width: 37px; height: 37px; border-radius: 12px; }
   .header-actions { gap: 1px; }
   .header-download { display: none; }
+  .mobile-download { display: inline-flex; }
   .section { padding-block: 80px; }
   .section-head h2, .themes-information h2, .sources-copy h2, .download-content h2 {
     font-size: clamp(2.5rem, 9vw, 3.65rem);
