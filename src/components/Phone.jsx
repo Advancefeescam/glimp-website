@@ -12,6 +12,7 @@ export default function Phone({ shot, alt, eager = false, className = '' }) {
         height="1412"
         loading={eager ? 'eager' : 'lazy'}
         decoding="async"
+        fetchPriority={eager ? "high" : undefined}
       />
     </figure>
   );
