@@ -7,7 +7,7 @@ export default function Sources() {
   return (
     <section className="section sources-section" id="gegevens" ref={ref}>
       <div className="wrap sources-layout">
-        <div className="sources-copy">
+        <div className="sources-copy" data-motion>
           <p className="eyebrow">Databronnen</p>
           <h2>Verschillende bronnen.<br /><span className="muted-heading">Eén overzicht.</span></h2>
           <p>Glimp brengt gegevens uit verschillende diensten samen. De beschikbaarheid verschilt per regio, vervoerder en moment — daarom laten we je geen garanties zien die we niet kunnen waarmaken.</p>
@@ -16,7 +16,7 @@ export default function Sources() {
 
         <ul className="source-links">
           {sources.map((source) => (
-            <li key={source.name}>
+            <li key={source.name} data-motion>
               <a href={source.href} target="_blank" rel="noopener noreferrer">
                 <span className="source-main">
                   <strong>{source.name}</strong>
