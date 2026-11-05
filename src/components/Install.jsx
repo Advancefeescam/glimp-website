@@ -3,6 +3,7 @@ import { M3eIcon } from '@m3e/react/icon';
 import { M3eAccordion, M3eExpansionPanel } from '@m3e/react/expansion-panel';
 import { links } from '../links';
 import { useReveal } from '../hooks/useReveal';
+import Phone from './Phone';
 
 const steps = [
   { number: '01', title: 'Open GitHub Releases', text: 'Daar vind je de nieuwste versie die voor Android is gepubliceerd.' },
@@ -57,9 +58,7 @@ export default function Install() {
             <span className="download-note">Beschikbaar als Android-APK via GitHub · Actief in ontwikkeling</span>
           </div>
           <div className="download-illustration" aria-hidden="true">
-            <span className="download-device">
-              <img src={import.meta.env.BASE_URL + 'screenshots/route-options.webp'} alt="" width="640" height="1412" loading="lazy" />
-            </span>
+            <Phone shot="route-options" alt="" className="download-phone" />
           </div>
         </div>
 
