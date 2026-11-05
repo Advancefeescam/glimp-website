@@ -5,6 +5,7 @@ export const links = {
   repo: APP_REPO,
   releases: `${APP_REPO}/releases/latest`,
   issues: `${APP_REPO}/issues`,
+  builds: `${APP_REPO}/actions/workflows/android-apk.yml`,
 };
 
 export const sources = [
