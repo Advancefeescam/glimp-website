@@ -71,6 +71,7 @@ function ArchitectureCard({ architecture, selected, size, onClick }) {
 function DownloadHeader({ mode, toggleTheme }) {
   return (
     <header className="header download-header">
+      <a className="skip" href="#main">Direct naar de downloads</a>
       <div className="wrap header-bar">
         <a className="brand" href={home} aria-label="Terug naar Glimp">
           <span className="brand-icon">
