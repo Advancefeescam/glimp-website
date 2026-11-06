@@ -7,12 +7,12 @@ import Phone from './Phone';
 function HeroActions({ compact = false }) {
   return (
     <div className={'hero-actions' + (compact ? ' hero-actions-compact' : '')}>
-      <M3eButton variant="filled" size="large" href={links.releases} target="_blank" rel="noopener noreferrer">
+      <M3eButton variant="filled" size="small" href={links.download}>
         <M3eIcon slot="icon" name="download" />
-        Download voor Android
+        Download Glimp
       </M3eButton>
-      <M3eButton variant="outlined" size="large" href="#functies">
-        Bekijk de functies
+      <M3eButton variant="text" size="small" href="#functies">
+        Bekijk functies
       </M3eButton>
     </div>
   );
