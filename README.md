@@ -81,6 +81,21 @@ glimp-website/
 └── TRADEMARKS.md            # Naam, logo en merkgebruik
 ~~~
 
+## Downloadpagina en architectuurkeuze
+
+De website heeft naast de homepage een **aparte, echt gegenereerde downloadpagina**:
+
+**[Download Glimp](https://advancefeescam.github.io/glimp-website/download/)** · bron: `download/index.html`, `src/download/DownloadPage.jsx` en `src/styles/download.css`.
+
+- **Universal** — aanbevolen als je niet weet welke architectuur jouw Android-apparaat heeft.
+- **ARM64 (`arm64-v8a`)** — de meeste moderne Android-telefoons.
+- **ARMv7 (`armeabi-v7a`)** — oudere 32-bit ARM-apparaten.
+- **x86_64** — vooral bepaalde Android-emulators en Intel/AMD-apparaten.
+
+De pagina vraagt **zonder tokens** de actuele releasegegevens op via de publieke GitHub API (`src/download/releases.js`). Alleen daadwerkelijk beschikbare APK-assets krijgen een directe downloadlink, inclusief bestandsgrootte en indien door GitHub aangeleverd SHA-256. **Als de app-repository privé is**, kan de publieke website die gegevens niet opvragen: in dat geval krijgt de bezoeker een duidelijke melding en een link naar GitHub Releases, waar de bezoeker mogelijk eerst toegang nodig heeft. **Er worden geen APK's gekopieerd naar deze website-repository.**
+
+Vite bouwt nu zowel `dist/index.html` als `dist/download/index.html` via de multi-page-configuratie in `vite.config.js`. GitHub Pages hoeft hiervoor geen SPA-fallback te gebruiken.
+
 ## Zelf draaien
 
 Voor de **website** heb je Node.js **22** en npm nodig. Java, Android Studio, Gradle en een Android-telefoon zijn hier **niet** nodig.
@@ -98,10 +113,11 @@ Open de URL die Vite in je terminal toont. De website gebruikt het GitHub Pages-
 | --- | --- |
 | `npm ci` | Installeer de versies uit `package-lock.json` |
 | `npm run dev` | Start Vite met live herladen |
-| `npm run build` | Maak de productiebuild in `dist/` |
+| `npm run build` | Bouw de homepage en downloadpagina in `dist/` |
 | `npm run preview` | Bekijk de productiebuild lokaal |
+| `npm test` | Controleer APK-architecturen, assetlinks en private-repositoryfallback |
 
-Voor een wijziging of PR is **`npm ci && npm run build`** de minimale technische controle. Test de pagina daarnaast bij verschillende breedtes en met het toetsenbord.
+Voor een wijziging of PR is **`npm ci && npm test && npm run build`** de minimale technische controle. Test de pagina daarnaast bij verschillende breedtes en met het toetsenbord.
 
 ## Aanpassen zonder dingen te breken
 
@@ -109,6 +125,8 @@ Voor een wijziging of PR is **`npm ci && npm run build`** de minimale technische
 | --- | --- |
 | Tekst, koppen of secties wijzigen | `src/components/` |
 | Download-/GitHub-links wijzigen | `src/links.js` |
+| APK-architecturen, release-API en fallback | `src/download/releases.js` |
+| Downloadpagina en apparaatkeuze ontwerpen | `src/download/DownloadPage.jsx`, `src/styles/download.css` |
 | De website in licht/donker stylen | `src/App.jsx` en `src/styles/base.css` |
 | Typografie, spacing en responsive layout verbeteren | `src/styles/base.css` en `src/styles/sections.css` |
 | M3E-iconen gebruiken | `src/icons.js` |
@@ -123,7 +141,7 @@ Voor een wijziging of PR is **`npm ci && npm run build`** de minimale technische
 
 De site staat op **[advancefeescam.github.io/glimp-website](https://advancefeescam.github.io/glimp-website/)**.
 
-1. Bij een **pull request naar `main`** controleert GitHub Actions de installatie (`npm ci`) en productiebuild (`npm run build`). Dit publiceert niets.
+1. Bij een **pull request naar `main`** controleert GitHub Actions de installatie (`npm ci`), tests (`npm test`), productiebuild (`npm run build`) en of beide HTML-pagina's zijn gebouwd. Dit publiceert niets.
 2. Bij een **push of merge naar `main`** draait dezelfde build en volgt een GitHub Pages-deployment.
 3. De gegenereerde bestanden komen uit `dist/`. Vite gebruikt het basepad `/glimp-website/`, dus links naar lokale assets moeten ook onder dat pad werken.
 
