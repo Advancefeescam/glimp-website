@@ -74,13 +74,13 @@ export default function Header({ mode, onToggleTheme }) {
           </M3eIconButton>
 
           <M3eButton className="header-download" variant="filled" size="small"
-            href={links.releases} target="_blank" rel="noopener noreferrer">
+            href={links.download}>
             <M3eIcon slot="icon" name="download" />
             Download Glimp
           </M3eButton>
 
           <M3eButton className="mobile-download" variant="tonal" size="small"
-            href={links.releases} target="_blank" rel="noopener noreferrer">
+            href={links.download}>
             APK
           </M3eButton>
 
@@ -109,9 +109,9 @@ export default function Header({ mode, onToggleTheme }) {
             {item.label}
           </a>
         ))}
-        <a className="mobile-menu-download" href={links.releases} target="_blank" rel="noopener noreferrer"
+        <a className="mobile-menu-download" href={links.download}
           onClick={() => setMenuOpen(false)}>
-          Download Glimp voor Android
+          Kies je Android-versie
           <M3eIcon name="arrow_outward" aria-hidden="true" />
         </a>
       </nav>
