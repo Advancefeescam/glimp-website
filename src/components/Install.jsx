@@ -6,8 +6,8 @@ import { useReveal } from '../hooks/useReveal';
 import Phone from './Phone';
 
 const steps = [
-  { number: '01', title: 'Open GitHub Releases', text: 'Daar vind je de nieuwste versie die voor Android is gepubliceerd.' },
-  { number: '02', title: 'Download de APK', text: 'Kies het juiste installatiebestand bij de release.' },
+  { number: '01', title: 'Kies je architectuur', text: 'Open onze downloadpagina en kies Universal of de versie die bij je toestel past.' },
+  { number: '02', title: 'Download de APK', text: 'De knop opent het beschikbare bestand van de officiële GitHub-release.' },
   { number: '03', title: 'Installeer Glimp', text: 'Open het bestand en geef Android zo nodig toestemming voor installatie.' },
 ];
 
@@ -40,17 +40,17 @@ export default function Install() {
           <div className="download-content">
             <p className="eyebrow download-eyebrow">Voor Android</p>
             <h2>Klaar voor<br /><span>de volgende rit?</span></h2>
-            <p>Download Glimp als APK en bekijk je reis vanaf de kaart.</p>
+            <p>Kies eenvoudig het juiste APK-bestand voor jouw Android-apparaat.</p>
             <div className="download-actions">
-              <M3eButton variant="filled" size="large" href={links.releases} target="_blank" rel="noopener noreferrer">
+              <M3eButton variant="filled" size="medium" href={links.download}>
                 <M3eIcon name="download" slot="icon" />
-                Download Glimp
+                Kies je APK
               </M3eButton>
               <a className="download-secondary" href={links.repo} target="_blank" rel="noopener noreferrer">
                 Bekijk de broncode <M3eIcon name="arrow_outward" aria-hidden="true" />
               </a>
             </div>
-            <span className="download-note">APK via GitHub Releases · Glimp is in ontwikkeling</span>
+            <span className="download-note">Vier architecturen · Android APK via GitHub</span>
           </div>
           <div className="download-illustration" aria-hidden="true">
             <Phone shot="route-options" alt="" className="download-phone" />

@@ -5,6 +5,7 @@ const productLinks = [
   { label: 'Functies', href: '#functies' },
   { label: 'De ervaring', href: '#weergave' },
   { label: 'Installeren', href: '#installeren' },
+  { label: 'Downloaden', href: links.download },
 ];
 
 const communityLinks = [

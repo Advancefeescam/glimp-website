@@ -3,6 +3,7 @@ const APP_REPO = 'https://github.com/Advancefeescam/glimp';
 
 export const links = {
   repo: APP_REPO,
+  download: `${import.meta.env.BASE_URL}download/`,
   releases: `${APP_REPO}/releases/latest`,
   issues: `${APP_REPO}/issues`,
 };
