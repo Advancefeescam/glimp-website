@@ -112,7 +112,7 @@ export default function Header({ mode, onToggleTheme }) {
         <a className="mobile-menu-download" href={links.download}
           onClick={() => setMenuOpen(false)}>
           Kies je Android-versie
-          <M3eIcon name="arrow_outward" aria-hidden="true" />
+          <M3eIcon name="download" aria-hidden="true" />
         </a>
       </nav>
     </header>
